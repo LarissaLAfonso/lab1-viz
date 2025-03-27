@@ -4,10 +4,18 @@ body {
      */
     font: 100%/1.5 system-ui;
     max-width: 100ch;
-    margin: 0 auto;
+    margin-inline: 60ch; /*Sets both margins in the inline direction to the same number*/
     padding: 1ch;
-    background-color: beige;
-   }
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+}
+
+:root {
+    --grey: oklch(93.62% 0 360);
+    --white: #ffffff;
+    --color-accent: oklch(87.94% 0.0617 19.76);
+    --border-color: oklch(50% 10% 200 / 40%);
+}
+
 
 img {
     max-width: 100%;
@@ -18,22 +26,24 @@ img {
 }
 
 h1 {
-    color : maroon;
     margin-bottom: 1em;
+    line-height: 1.1;
+    text-wrap: balance;
     font-size: 400%;
 }
 
 nav {
     display: flex;
-    --border-color: rgb(255, 223, 223);
+    border-bottom-color: var(--color-accent);
+    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
 }
 
 nav a {
-    flex:1;
+    flex:1; /*All elements take up the same amount of space*/
     text-decoration: none;
     color: inherit;
     text-align: center;
-    padding: 0.1em;
+    padding: 0.5em;
     margin-bottom: 0.01em;
     border-bottom-width: 1px;
     border-bottom-style: solid;
@@ -41,21 +51,19 @@ nav a {
 }
 
 nav a.current {
-    border-bottom-width: 0.4em;
-    border-bottom-color: rgb(255, 223, 223);
-    padding-bottom: 1em;
+    border-bottom-width:0.4em;
+    border-bottom-style:solid;
+    border-bottom-color:oklch(80% 3% 200);
+    padding-bottom:0.1em;
+    font-weight: bold;
 }
 
-:root {
-    --color-accent: maroon;
-  }
-  
 nav a:hover {
     border-bottom-width:0.4em;
     border-bottom-style:solid;
     border-bottom-color:var(--color-accent);
     padding-bottom:0.1em;
-    background-color: color-mix(in oklch, var(--color-accent), canvas 85%);
+    background-color: oklch(from var(--color-accent) 95% 5% h);
 }
 
 
@@ -98,20 +106,18 @@ article h2{
     margin: 0;
 }
 
-.color-scheme {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+.dark-mode-container {
+    position: absolute; /* Position the container in the upper-right corner */
+    top: 1rem; /* 1rem from the top */
+    right: 1rem; /* 1rem from the right */
+    display: flex; /* Use flexbox to align label and select next to each other */
+    align-items: center; /* Vertically center the label and select */
+    gap: 0.5rem; /* Adds space between the label and the select toggle */
 }
 
 select {
-    position: static; /* Remove absolute positioning */
-    margin: 0;
     padding: 4px;
+    background-color: var(--white); /* Optional: Add background for contrast */
+    font-size: 1rem; /* Ensure the font size matches the label */
+    line-height: 1.5; /* Align the text properly */
 }
